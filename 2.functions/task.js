@@ -21,7 +21,6 @@ function getArrayParams(arr) {
 
     return { min: min, max: max, avg: avg };
 }
-console.log(getArrayParams([-99, 99, 10]));
 
 // Задание 2
 function worker(arr) {
