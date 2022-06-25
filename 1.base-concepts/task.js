@@ -16,9 +16,24 @@ function solveEquation(a, b, c) {
 }
 
 function calculateTotalMortgage(percent, contribution, amount, date) {
-    let totalAmount;
+    // процентная ставка, сумма первоначального взноса, сумма кредита, дата окончания кредита
 
-    // код для задачи №2 писать здесь
+    let bodyCredit = amount - contribution; // тело кредита
+
+    let startPayCredit = Date.now(); // текущая дата
+    let endPayCredit = +date; // конец оплаты кредита
+    let loanTerm = Math.trunc(
+        (endPayCredit - startPayCredit) / 1000 / 60 / 60 / 24 / 30
+    ); // сколько месяцев платить кредит до текущей даты
+
+    let monthPayment =
+        bodyCredit *
+        (percent / 1200 +
+            percent / 1200 / ((1 + percent / 1200) ** loanTerm - 1));
+    // ежемесячная оплата
+
+    let generalSum = monthPayment * loanTerm; // общая сумма которую нужно заплатить клиенту
+    let totalAmount = +generalSum.toFixed(2);
 
     return totalAmount;
 }
