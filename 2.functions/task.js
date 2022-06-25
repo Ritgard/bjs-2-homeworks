@@ -24,18 +24,23 @@ function getArrayParams(arr) {
 
 // Задание 2
 function worker(arr) {
-    let sum;
-
-    // Ваш код
-
+    let sum = 0;
+    for (let i = 0; i < arr.length; i++) {
+        // в теле цикла складываются все числа массива и записываются в переменную sum
+        sum = sum + arr[i];
+    }
     return sum;
 }
 
 function makeWork(arrOfArr, func) {
-    let max;
+    let max = 0;
 
-    // Ваш кода
-    // for ...
+    for (let i = 0; i < arrOfArr.length; i++) {
+        // цикл проходится по всем массивам вычисляя с помощью функции worker сумму массива, если она больше предыдущей, то это число записывается в переменную max
+        if (func(arrOfArr[i]) > max) {
+            max = func(arrOfArr[i]);
+        }
+    }
 
     return max;
 }
