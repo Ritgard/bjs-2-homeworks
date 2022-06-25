@@ -47,5 +47,22 @@ function makeWork(arrOfArr, func) {
 
 // Задание 3
 function worker2(arr) {
-    // Ваш код
+    let min = Infinity;
+    let max = -Infinity;
+    let difference = 0; // разность чисел
+
+    for (let i = 0; i < arr.length; i++) {
+        if (min > arr[i]) {
+            // если минимум меньше элемента массива, то минимум становится равен элементу
+            min = arr[i];
+        }
+        if (max < arr[i]) {
+            // если максимум больше элемента массива, то максимум становится равен элементу
+            max = arr[i];
+        }
+    }
+    difference = max - min;
+    difference = Math.abs(difference);
+    return difference;
 }
+console.log(worker2([-1, -99]));
