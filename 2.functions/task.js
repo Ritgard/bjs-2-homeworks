@@ -18,7 +18,6 @@ function getArrayParams(arr) {
     }
     avg = sum / arr.length; // среднее значение
     avg = parseFloat(avg.toFixed(2));
-    console.log(typeof avg);
 
     return { min: min, max: max, avg: avg };
 }
