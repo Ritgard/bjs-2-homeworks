@@ -65,4 +65,3 @@ function worker2(arr) {
     difference = Math.abs(difference);
     return difference;
 }
-console.log(worker2([-1, -99]));
