@@ -15,9 +15,12 @@ function compareArrays(arr1, arr2) {
 }
 
 function advancedFilter(arr) {
-    let resultArr;
+    let resultArr = arr
+        .filter((item) => item > 0)
+        .filter((item) => item % 3 === 0)
+        .map((item) => item * 10);
 
-    // Ваш код
+    // фильтр сначала выделяет только положительные числа. потом только те, что кратые трем. потом метод map умножает на 10
 
     return resultArr; // array
 }
