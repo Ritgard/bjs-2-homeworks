@@ -91,15 +91,15 @@ class Library {
     }
 
     giveBookByName(bookName) {
-        let result;
+        let book;
         for (let i = 0; i < this.books.length; i++) {
             if (this.books[i].name === bookName) {
-                result = this.books.splice([i], 1);
+                book = this.books.splice([i], 1);
             } else {
-                result = null;
+                book = null;
             }
         }
-        return result;
+        return book;
     }
 }
 
@@ -120,12 +120,51 @@ library.addBook(
         168
     )
 );
-library.addBook(new NovelBook('Герберт Уэллс', 'Машина времени', 1895, 138));
-library.addBook(new Magazine('Мурзилка', 1924, 60));
+/*-------------------------*/
+class Student {
+    constructor(name) {
+        this.name = name;
+    }
 
-console.log(library.findBookBy('name', 'Властелин колец')); //null
-console.log(library.findBookBy('releaseDate', 1924).name); //"Мурзилка"
+    addMark(mark, nameItem) {
+        if (mark > 5 || mark < 1) {
+            console.log('Ошибка, оценка должна быть числом от 1 до 5');
+        } else {
+            if (this[nameItem] !== undefined) {
+                this[nameItem].push(mark);
+            } else {
+                this[nameItem] = [mark];
+            }
+        }
+    }
 
-console.log('Количество книг до выдачи: ' + library.books.length); //Количество книг до выдачи: 4
-library.giveBookByName('Машина времени');
-console.log('Количество книг после выдачи: ' + library.books.length); //Количество книг
+    getAverageBySubject(nameItem) {
+        if (this[nameItem] !== undefined) {
+            let item = this[nameItem].reduce((acc, num) => acc + num, 0);
+            item = item / this[nameItem].length;
+            item = item.toFixed(1); // окргуление числа до двух знаков после запятой
+            console.log(`Средний балл по предмету ${nameItem} ${item}`);
+        } else {
+            console.log('Несуществующий предмет');
+        }
+    }
+
+    getAverage() {
+        // в методе проводится итерация по всем полям объекта, которому был вызван данный метод, в каждом шаге цикла, проверяется условие, является ли значение массивом с оценками или нет
+        let totalAverageOfArrays = 0;
+        let totalSumOfArrays = []; // массив со средней оценкой всех массивов
+        for (let key in this) {
+            if (Array.isArray(this[key])) {
+                let item = this[key].reduce((acc, num) => acc + num, 0);
+                item = item / this[key].length;
+                totalSumOfArrays.push(item);
+            }
+        }
+        totalAverageOfArrays = totalSumOfArrays.reduce(
+            (acc, num) => acc + num,
+            0
+        );
+        totalAverageOfArrays = totalAverageOfArrays / totalSumOfArrays.length;
+        console.log(`Средний балл по всем оценкам ${totalAverageOfArrays}`);
+    }
+}
